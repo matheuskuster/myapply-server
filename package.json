@@ -1,6 +1,26 @@
 {
   "name": "myapply-server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/server.ts",
+    "start": "ts-node src/server.ts"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^2.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "eslint-plugin-sort-keys-fix": "^1.1.1",
+    "prettier": "^2.1.1",
+    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0-pre.61",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.0.2"
+  }
 }
