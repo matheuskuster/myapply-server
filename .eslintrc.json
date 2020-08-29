@@ -1,0 +1,70 @@
+{
+    "env": {
+        "browser": true,
+        "es2020": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "simple-import-sort",
+        "sort-keys-fix",
+        "prettier"
+    ],
+    "rules": {
+        "@typescript-eslint/ban-ts-comment": [
+            "error",
+            {"ts-ignore": "allow-with-description"}
+        ],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "array-bracket-spacing": ["error", "never"],
+        "comma-dangle": ["error", "always-multiline"],
+        "import/first": ["error"],
+        "import/newline-after-import": ["error", {"count": 1}],
+        "import/no-duplicates": "off",
+        "import/no-unresolved": ["error"],
+        "indent": ["error", 4, {
+            "ArrayExpression": "first",
+            "CallExpression": {"arguments": "first"},
+            "FunctionDeclaration": {"parameters": "first"},
+            "FunctionExpression": {"parameters": "first"},
+            "ObjectExpression": "first",
+            "VariableDeclarator": "first"
+        }],
+        "lines-around-comment": ["error", {
+            "allowBlockStart": true,
+            "beforeBlockComment": true,
+            "beforeLineComment": true
+        }],
+        "no-multiple-empty-lines": ["error", {"max": 2}],
+        "no-trailing-spaces": "error",
+        "object-curly-newline": ["error", {
+            "consistent": true,
+            "multiline": true
+        }],
+        "object-curly-spacing": ["error", "never"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "sort-keys-fix/sort-keys-fix": [
+            "error",
+            "asc",
+            {"caseSensitive": true, "natural": true}
+        ],
+        "space-in-parens": ["error", "never"]
+    },
+    "settings": {"import/resolver": {"typescript": {}}}
+}
