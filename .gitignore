@@ -5,8 +5,10 @@ build/
 .idea/
 coverage/
 .env
+*.env
 ormconfig.json
 dist
+data/
 *.log
 
 tmp/*
