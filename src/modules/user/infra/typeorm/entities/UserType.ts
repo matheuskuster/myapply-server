@@ -4,7 +4,9 @@ import {
     CreateDateColumn,
     Column,
     PrimaryGeneratedColumn,
+    OneToMany,
 } from 'typeorm';
+import User from './User';
 
 @Entity('user_types')
 class UserType {
@@ -16,6 +18,9 @@ class UserType {
 
     @Column()
     admin: boolean;
+
+    @OneToMany(() => User, (user) => user.id)
+    users: User[];
 
     @CreateDateColumn()
     created_at: Date;
