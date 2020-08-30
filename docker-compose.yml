@@ -8,6 +8,6 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - './data/postgresql:/bitnami/postgresql'
+      - '/data/postgresql:/bitnami/postgresql'
     env_file:
       - .env
