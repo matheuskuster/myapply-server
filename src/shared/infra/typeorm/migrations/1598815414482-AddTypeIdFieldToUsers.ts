@@ -31,7 +31,6 @@ export class AddTypeIdFieldToUsers1598815414482 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('users', 'UserType');
         await queryRunner.dropColumn('users', 'type_id');
     }
 }
