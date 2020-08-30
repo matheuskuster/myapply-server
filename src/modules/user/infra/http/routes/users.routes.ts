@@ -21,4 +21,19 @@ usersRouter.post(
     usersController.create,
 );
 
+usersRouter.post(
+    '/admin',
+    celebrate({
+        [Segments.BODY]: {
+            email: Joi.string().required(),
+            name: Joi.string().required(),
+            password: Joi.string().required(),
+            surname: Joi.string().required(),
+            token: Joi.string().required(),
+            type: Joi.string(),
+        },
+    }),
+    usersController.createAsAdmin,
+);
+
 export default usersRouter;
