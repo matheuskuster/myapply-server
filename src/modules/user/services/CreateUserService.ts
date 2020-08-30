@@ -15,6 +15,7 @@ interface IRequest {
     password: string;
     surname: string;
     type: string;
+    user_id: string;
 }
 
 @injectable()
@@ -36,7 +37,23 @@ class CreateUserService {
         email,
         password,
         type,
+        user_id,
     }: IRequest): Promise<User> {
+        const loggedUser = await this.usersRepository.findById(user_id);
+
+        if (loggedUser?.type.admin === false) {
+            throw new AppError(
+                'You do not have permission to create a new user',
+                401,
+            );
+        }
+
+        const userType = await this.userTypesRepository.findBySlug(type);
+
+        if (!userType) {
+            throw new AppError('Invalid user type.');
+        }
+
         const checkIfUserExists = await this.usersRepository.findByEmail(email);
 
         if (checkIfUserExists) {
@@ -44,12 +61,6 @@ class CreateUserService {
         }
 
         const hashedPassword = await this.hashProvider.generateHash(password);
-
-        const userType = await this.userTypesRepository.findBySlug(type);
-
-        if (!userType) {
-            throw new AppError('Invalid user type.');
-        }
 
         const user = await this.usersRepository.create({
             email,
