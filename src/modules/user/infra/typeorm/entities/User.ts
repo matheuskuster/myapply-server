@@ -1,11 +1,15 @@
 import {
-    Entity,
-    UpdateDateColumn,
-    CreateDateColumn,
     Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    OneToOne,
     PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import {Exclude} from 'class-transformer';
+
+import UserType from '@modules/user/infra/typeorm/entities/UserType';
 
 @Entity('users')
 class User {
@@ -24,6 +28,13 @@ class User {
     @Column()
     @Exclude()
     password: string;
+
+    @Column()
+    type_id: string;
+
+    @OneToOne(() => UserType)
+    @JoinColumn({name: 'type_id'})
+    type: UserType;
 
     @CreateDateColumn()
     created_at: Date;

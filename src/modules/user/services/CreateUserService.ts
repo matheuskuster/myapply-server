@@ -5,6 +5,7 @@ import {inject, injectable} from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
 import IUsersRepository from '@modules/user/repositories/IUsersRepository';
+import IUserTypesRepository from '@modules/user/repositories/IUserTypesRepository';
 import User from '@modules/user/infra/typeorm/entities/User';
 import IHashProvider from '@modules/user/providers/HashProvider/models/IHashProvider';
 
@@ -13,6 +14,7 @@ interface IRequest {
     email: string;
     password: string;
     surname: string;
+    type: string;
 }
 
 @injectable()
@@ -20,6 +22,9 @@ class CreateUserService {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
+
+        @inject('UserTypesRepository')
+        private userTypesRepository: IUserTypesRepository,
 
         @inject('HashProvider')
         private hashProvider: IHashProvider,
@@ -30,6 +35,7 @@ class CreateUserService {
         surname,
         email,
         password,
+        type,
     }: IRequest): Promise<User> {
         const checkIfUserExists = await this.usersRepository.findByEmail(email);
 
@@ -39,11 +45,18 @@ class CreateUserService {
 
         const hashedPassword = await this.hashProvider.generateHash(password);
 
+        const userType = await this.userTypesRepository.findBySlug(type);
+
+        if (!userType) {
+            throw new AppError('Invalid user type.');
+        }
+
         const user = await this.usersRepository.create({
             email,
             name,
             password: hashedPassword,
             surname,
+            type_id: userType.id,
         });
 
         return user;

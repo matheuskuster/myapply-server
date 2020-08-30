@@ -1,4 +1,4 @@
-import {getRepository, Repository, Not} from 'typeorm';
+import {getRepository, Repository} from 'typeorm';
 
 import IUsersRepository from '@modules/user/repositories/IUsersRepository';
 import ICreateUserDTO from '@modules/user/dtos/ICreateUserDTO';
@@ -14,6 +14,7 @@ class UsersRepository implements IUsersRepository {
 
     public async findByEmail(email: string): Promise<User | undefined> {
         const user = await this.ormRepository.findOne({
+            relations: ['type'],
             where: {email},
         });
 
@@ -21,11 +22,11 @@ class UsersRepository implements IUsersRepository {
     }
 
     public async create(userData: ICreateUserDTO): Promise<User> {
-        const appointment = this.ormRepository.create(userData);
+        const user = this.ormRepository.create(userData);
 
-        await this.ormRepository.save(appointment);
+        await this.ormRepository.save(user);
 
-        return appointment;
+        return user;
     }
 
     public async save(user: User): Promise<User> {

@@ -3,4 +3,5 @@ export default interface ICreateUser {
     name: string;
     password: string;
     surname: string;
+    type_id?: string;
 }
