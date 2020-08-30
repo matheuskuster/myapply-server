@@ -30,6 +30,7 @@
             "error",
             {"ts-ignore": "allow-with-description"}
         ],
+        "@typescript-eslint/no-extra-semi": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "array-bracket-spacing": ["error", "never"],
         "comma-dangle": ["error", "always-multiline"],
@@ -58,7 +59,6 @@
         }],
         "object-curly-spacing": ["error", "never"],
         "quotes": ["error", "single"],
-        "semi": ["error", "always"],
         "sort-keys-fix/sort-keys-fix": [
             "error",
             "asc",

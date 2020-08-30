@@ -10,4 +10,4 @@ services:
     volumes:
       - './data/postgresql:/bitnami/postgresql'
     env_file:
-      - db.env
+      - .env
