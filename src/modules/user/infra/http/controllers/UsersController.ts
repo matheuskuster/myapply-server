@@ -12,6 +12,7 @@ export default class UsersController {
         request: Request,
         response: Response,
     ): Promise<Response> {
+        const user_id = request.user.id;
         const {name, surname, email, password, type} = request.body;
 
         const createUser = container.resolve(CreateUserService);
@@ -22,6 +23,7 @@ export default class UsersController {
             password,
             surname,
             type: type ?? DEFAULT_USER_TYPE,
+            user_id,
         });
 
         return response.json(classToClass(user));
