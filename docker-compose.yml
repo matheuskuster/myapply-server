@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  postgresql:
+    image: 'docker.io/bitnami/postgresql:11-debian-10'
+    user: 'root'
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    volumes:
+      - './data/postgresql:/bitnami/postgresql'
+    env_file:
+      - db.env
