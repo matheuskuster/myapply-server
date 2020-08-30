@@ -1,14 +1,9 @@
-/**
- * IMPORTS
- */
 import {Router} from 'express';
 
-/**
- * CONSTANTS AND DEFINITIONS
- */
+import userRouter from '@modules/user/infra/http/routes/users.routes';
+
 const routes = Router();
 
-/**
- * EXPORTS
- */
+routes.use('/users', userRouter);
+
 export default routes;

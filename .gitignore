@@ -10,6 +10,7 @@ ormconfig.json
 dist
 data/
 *.log
+package-lock.json
 
 tmp/*
 !tmp/.gitkeep
