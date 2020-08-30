@@ -3,7 +3,7 @@ import {
     CreateDateColumn,
     Entity,
     JoinColumn,
-    OneToOne,
+    ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -32,7 +32,7 @@ class User {
     @Column()
     type_id: string;
 
-    @OneToOne(() => UserType)
+    @ManyToOne(() => UserType)
     @JoinColumn({name: 'type_id'})
     type: UserType;
 
